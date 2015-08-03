@@ -1,0 +1,8 @@
+<form ng-submit="register()">
+	<h2>Register</h2>
+	<p class="text-warning">{{errorMessage}}</p>
+	<input ng-model="vmRegister.UserName" placeholder="Username" class="form-control" ng-required="true"><br/>
+    <input type="password" ng-model="vmRegister.Password" placeholder="Password" class="form-control" ng-required="true"><br/>
+    <input type="email" ng-model="vmRegister.Email" placeholder="Email" class="form-control" ng-required="true"><br />
+	<input type="submit" value="Register" class="btn btn-primary" />
+</form>

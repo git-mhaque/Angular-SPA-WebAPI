@@ -1,0 +1,44 @@
+﻿body {
+    padding-top: 50px;
+    padding-bottom: 20px;
+}
+
+/* Set padding to keep content from hitting the edges */
+.body-content {
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+/* Set width on the form input elements since they're 100% wide by default */
+input,
+select,
+textarea {
+    max-width: 280px;
+}
+
+
+
+.list-container
+{
+    padding:20px
+}
+ 
+.list-item
+{
+    background-color: rgb(239,239,239);
+    padding: 5px;
+    margin: 5px; 
+ 
+    border-radius: 5px;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    border: 1px solid lightgray;
+    /*cursor: move;*/
+ 
+}
+ 
+.list-item-done
+{
+    background-color: rgb(204, 255, 153);
+    text-decoration: line-through;
+}

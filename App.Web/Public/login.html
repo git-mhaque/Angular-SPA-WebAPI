@@ -1,0 +1,7 @@
+<form ng-submit="login()">
+	<h2>Log In</h2>
+	<p class="text-danger">{{errorMessage}}</p>
+	<input ng-model="vmLogin.username" placeholder="Username" class="form-control" ng-required="true"><br/>
+    <input type="password" ng-model="vmLogin.password" placeholder="Password" class="form-control" ng-required="true"><br/>
+	<input type="submit" value="Log in" class="btn btn-primary" />
+</form>
