@@ -46,8 +46,6 @@ app.factory('errorInterceptor', ['$q','$location', function ($q, $rootScope, $lo
 app.config(['$httpProvider', function ($httpProvider) {
     $httpProvider.interceptors.push('errorInterceptor');
 }]);
-
-
 app.config(function($routeProvider){
 	$routeProvider
 		.when('/', {
