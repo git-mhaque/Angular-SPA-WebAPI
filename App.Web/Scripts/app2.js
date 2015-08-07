@@ -1,8 +1,11 @@
-var app = angular.module('taskManagerApp', ['ngRoute', 'ngResource']).run(function ($rootScope) {
+var app = angular.module('taskManagerApp', ['ngRoute', 'ngResource']).run(function ($rootScope,$http) {
 
     $rootScope.isAuthenticated = false;
 	$rootScope.currentUser = '';
 	$rootScope.tokenKey = 'accessToken';
+
+    //TODO: fix this, passing null on runtime
+	$http.defaults.headers.common["Authorization"] = 'Bearer ' + sessionStorage.getItem($rootScope.tokenKey);
 
 	$rootScope.logout = function () {
     	//$http.get('auth/signout');
@@ -18,24 +21,27 @@ app.config(function($routeProvider){
 	$routeProvider
 		//the timeline display
 		.when('/', {
-			templateUrl: '/Public/main.html',
+			templateUrl: './Public/main.html',
 			controller: 'mainController'
 		})
 		//the login display
 		.when('/login', {
-		    templateUrl: '/Public/login.html',
+		    templateUrl: './Public/login.html',
 			controller: 'authController'
 		})
 		//the signup display
 		.when('/register', {
-		    templateUrl: '/Public/register.html',
+		    templateUrl: './Public/register.html',
 			controller: 'authController'
 		});
 });
 
 
 app.factory('taskService', function($resource){
-	return $resource('/api/tasks/:id');
+    return $resource('/api/tasks/:id', null,
+        {
+            'update': { method: 'PUT' }
+        });
 });
 
 app.controller('mainController', function(taskService, $scope, $rootScope){
@@ -43,26 +49,44 @@ app.controller('mainController', function(taskService, $scope, $rootScope){
 	$scope.newTask = { Title: '', Details: '', DueDate: '', CompletedDate: '' };
 	
 	$scope.createTask = function() {
-	    $scope.newTask.created_by = $rootScope.current_user;
-	    $scope.newTask.created_at = Date.now();
+	    $scope.newTask.createdBy = $rootScope.currentUser;
+	    $scope.newTask.createdDate = Date.now();
 	    taskService.save($scope.newTask, function () {
-	        $scope.newTask = taskService.query();
+	        $scope.tasks = taskService.query();
 	        $scope.newTask = { Title: '', Details: '', DueDate: '', CompletedDate: '' };
 	    });
 	};
 
 	$scope.editTask = function (index) {
 	    $scope.tasks[index].EditMode = !$scope.tasks[index].EditMode;
+	    if ($scope.tasks[index].EditMode == false) {
+	        $scope.updateTask(index);
+	    }
+	    
 	};
 
 	$scope.editTaskKeyPress = function (keyEvent, index) {
 	    if (keyEvent.which === 13) {
 	        $scope.tasks[index].EditMode = false;
+	        $scope.updateTask(index);
 	    }
-	}
+	};
+
+
+	$scope.updateTask = function (index) {
+	    var task = $scope.tasks[index];
+	    console.log("Update task: " + task.Title);
+	    taskService.update({id:task.Id},task, function () {
+	        //$scope.tasks.splice(index, 1);
+	    });
+	};
 
 	$scope.removeTask = function (index) {
-	    $scope.tasks.splice(index, 1);
+	    var taskId = $scope.tasks[index].Id;
+	    console.log("Remove task: " + taskId);
+	    taskService.delete({id: taskId}, function () {
+	        $scope.tasks.splice(index, 1);
+	    });
 	};
 
 
