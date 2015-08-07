@@ -1,7 +1,25 @@
-<div class="clearfix">
+<br/>
+<div class="clearfix container">
     <form ng-submit="createTask()" ng-show="isAuthenticated">
-        <textarea required class="form-control" maxlength="200" rows="3" placeholder="Say something" ng-model="newPost.text"></textarea>
-        <input class="btn submit-btn pull-right" type="submit" value="Add Task" />
+
+        <div class="row">
+            <div class="col-md-12">
+                <input type="text" class="form-control" ng-model="newTask.Title" placeholder="Title" ng-required="true" />
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-12">
+                <textarea required class="form-control" maxlength="200" rows="2" placeholder="Details" ng-model="newTask.Details"></textarea>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-12">
+                <input class="btn submit-btn btn-primary" type="submit" value="Add Task" />
+            </div>
+        </div>
+
     </form>
 </div>
 <div id="post-stream">
@@ -9,32 +27,29 @@
     <div ng-repeat="item in tasks track by $index | orderBy:'DueDate': false" class="list-item" ng-class="{'list-item-done': item.isDone}" >
       <div class="container">
           <div class="row">
-              <div class="col-md-12">
-                  <span ng-show="!item.EditMode">{{item.Title}}&nbsp;</span>
-                  <span ng-show="item.EditMode"><input type="text" ng-model="item.Title" placeholder="Title"  ng-keypress="editTaskKeyPress($event,$index)" />&nbsp;</span>
+              <div class="col-md-6">
+                  <span ng-show="!item.EditMode"><b>{{item.Title}}</b></span>
+                  <span ng-show="item.EditMode"><input type="text" class="form-control" ng-model="item.Title" placeholder="Title" ng-keypress="editTaskKeyPress($event,$index)" />&nbsp;</span>
               </div>
-          </div>
-          <div class="row">
-              <div class="col-md-12">
-                  <span ng-show="!item.EditMode">{{item.Details}}&nbsp;</span>
-                  <span ng-show="item.EditMode"><input type="text" ng-model="item.Details" placeholder="Details" ng-keypress="editTaskKeyPress($event,$index)" />&nbsp;</span>
+              <div class="col-md-1 pull-right">
+                  <span class="glyphicon glyphicon-pencil" aria-hidden="true" ng-show="!item.EditMode" ng-click="editTask($index)"></span>
+                  <span class="glyphicon glyphicon-floppy-disk" aria-hidden="true" ng-show="item.EditMode" ng-click="editTask($index)"></span>
+                  <span class="glyphicon glyphicon-trash" aria-hidden="true" ng-click="removeTask($index)"></span>
               </div>
           </div>
           <div class="row">
               <div class="col-md-6">
+                  <span ng-show="!item.EditMode">{{item.Details}}&nbsp;</span>
+                  <span ng-show="item.EditMode"><input type="text" class="form-control" ng-model="item.Details" placeholder="Details" ng-keypress="editTaskKeyPress($event,$index)" />&nbsp;</span>
+              </div>
+          </div>
+          <!--<div class="row">
+              <div class="col-md-12">
                   <input type="text" ng-model="item.DueDate" />
                   <input type="text" ng-model="item.CreatedDate" />
               </div>
-
-              <div class="col-md-6">
-                  <span class="glyphicon glyphicon-pencil" aria-hidden="true" ng-show="!item.EditMode" ng-click="editTask($index)"></span>
-                  <span class="glyphicon glyphicon-save" aria-hidden="true" ng-show="item.EditMode" ng-click="editTask($index)"></span>
-                  <span class="glyphicon glyphicon-remove" aria-hidden="true" ng-click="removeTask($index)"></span>
-              </div>
-          </div>
+          </div>-->
       </div>
-          
-      
         
     </div>
 </div>
