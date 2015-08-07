@@ -5,6 +5,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <base href="@Url.Content("~")" />
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width" />
     <title>@ViewBag.Title</title>
@@ -14,8 +15,6 @@
     @Scripts.Render("~/bundles/bootstrap")
     @Scripts.Render("~/bundles/angular")
     <script src=@Scripts.Url("~/Scripts/app2.js")></script>
-
-    <link rel="stylesheet" src=@Scripts.Url("~/Scripts/app2.js") />
 </head>
 
 <body ng-app="taskManagerApp">

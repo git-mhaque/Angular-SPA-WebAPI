@@ -4,6 +4,7 @@ var app = angular.module('taskManagerApp', ['ngRoute', 'ngResource']).run(functi
 	$rootScope.currentUser = '';
 	$rootScope.tokenKey = 'accessToken';
 
+    //TODO: fix this, passing null on runtime
 	$http.defaults.headers.common["Authorization"] = 'Bearer ' + sessionStorage.getItem($rootScope.tokenKey);
 
 	$rootScope.logout = function () {
