@@ -1,0 +1,69 @@
+<div class="=row">
+    <div class="col-md-3" ng-show="isAuthenticated">
+        <h4>Add Task</h4>
+        <form ng-submit="createTask()">
+            <div class="row">
+                <div class="col-md-12 form-group">
+                    <input type="text" class="form-control" ng-model="newTask.Title" placeholder="Title" ng-required="true" />
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12 form-group">
+                    <textarea required class="form-control" maxlength="200" rows="2" placeholder="Details" ng-model="newTask.Details"></textarea>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12 form-group">
+                    <input type="text" class="form-control" placeholder="Due date" ng-model="newTask.DueDate" />
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12 form-group">
+                    <input type="text" class="form-control" placeholder="Completed date" ng-model="newTask.CompletedDate" />
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12 form-group">
+                    <input class="btn submit-btn btn-primary" type="submit" value="Add Task" />
+                </div>
+            </div>
+        </form>
+    </div>
+    <div class="col-md-9">
+        <h4>Outstanding Tasks</h4>
+        <div ng-repeat="item in tasks track by $index | orderBy:'DueDate': false" class="list-item" ng-class="{'list-item-done': item.isDone}">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-6">
+                        <span ng-show="!item.EditMode"><b>{{item.Title}}</b></span>
+                        <span ng-show="item.EditMode"><input type="text" class="form-control" ng-model="item.Title" placeholder="Title" ng-keypress="editTaskKeyPress($event,$index)" />&nbsp;</span>
+                    </div>
+                    <div class="col-md-1 pull-right">
+                        <span class="glyphicon glyphicon-pencil" aria-hidden="true" ng-show="isAuthenticated && !item.EditMode" ng-click="editTask($index)"></span>
+                        <span class="glyphicon glyphicon-floppy-disk" aria-hidden="true" ng-show="isAuthenticated && item.EditMode" ng-click="editTask($index)"></span>
+                        <span class="glyphicon glyphicon-trash" aria-hidden="true" ng-show="isAuthenticated" ng-click="removeTask($index)"></span>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <span ng-show="!item.EditMode">{{item.Details}}&nbsp;</span>
+                        <span ng-show="item.EditMode"><input type="text" class="form-control" ng-model="item.Details" placeholder="Details" ng-keypress="editTaskKeyPress($event,$index)" />&nbsp;</span>
+                    </div>
+                </div>
+                <!--<div class="row">
+                <div class="col-md-12">
+                    <input type="text" ng-model="item.DueDate" />
+                    <input type="text" ng-model="item.CreatedDate" />
+                </div>
+            </div>-->
+            </div>
+        </div>
+    </div>
+
+</div>
+
+
+
+
+
+

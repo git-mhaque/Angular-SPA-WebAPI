@@ -14,7 +14,10 @@
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
     @Scripts.Render("~/bundles/angular")
-    <script src=@Scripts.Url("~/Scripts/app2.js")></script>
+    <script src=@Scripts.Url("~/public/scripts/app.js")></script>
+    <script src=@Scripts.Url("~/public/scripts/services/taskService.js")></script>
+    <script src=@Scripts.Url("~/public/scripts/controllers/authController.js")></script>
+    <script src=@Scripts.Url("~/public/scripts/controllers/taskController.js")></script>
 </head>
 
 <body ng-app="taskManagerApp">
@@ -33,7 +36,7 @@
                     <ul class="nav navbar-nav navbar-right">
                         <li ng-show="!isAuthenticated"><a href="#/login">Login</a></li>
                         <li ng-show="!isAuthenticated"><a href="#/register">Register</a></li>
-                        <li ng-show="isAuthenticated"><a href="#">Loggged in as {{currentUser}}</a></li>
+                        <li ng-show="isAuthenticated"><a href="#">Logged in as {{currentUser}}</a></li>
                         <li ng-show="isAuthenticated"><a href="#/" ng-click="logout()">Logout</a></li>
                     </ul>
                 </div>
