@@ -37,8 +37,7 @@ namespace App.Web.Repositories
                     task.Title = dto.Title;
                     task.Details = dto.Details;
                     task.DueDate = dto.DueDate;
-                    task.CompletedDate = dto.CompletedDate;
-
+                   
                     if (dto.Id == 0)
                     {
                         task.CreatedBy = dto.CreatedBy;
@@ -49,6 +48,10 @@ namespace App.Web.Repositories
                     }
                     else
                     {
+                        if (dto.IsComplete) 
+                        {
+                            task.CompletedDate = DateTime.Now;
+                        }
                         task.ModifiedBy = dto.ModifiedBy;
                         task.ModifiedDate = DateTime.Now;
 
@@ -110,7 +113,7 @@ namespace App.Web.Repositories
                         taskDto.Title = task.Title;
                         taskDto.Details = task.Details;
                         taskDto.DueDate = task.DueDate;
-                        taskDto.CompletedDate = task.CompletedDate;
+                        taskDto.IsComplete = task.CompletedDate != null;
                         taskDto.CreatedBy = task.CreatedBy;
                         taskDto.CreatedDate = task.CreatedDate;
                         taskDto.ModifiedBy = task.ModifiedBy;
@@ -132,7 +135,7 @@ namespace App.Web.Repositories
         }
 
 
-        public IEnumerable<TaskDto> GetTasks(bool outstandingOnly, int skip, int take)
+        public IEnumerable<TaskDto> GetOutstandingTasks()
         {
             IEnumerable<TaskDto> tasks = null;
             
@@ -143,10 +146,7 @@ namespace App.Web.Repositories
                     var query = from r in db.TaskItems
                                 select r;
 
-                    if (outstandingOnly)
-                    {
-                        query = query.Where(q => q.CompletedDate == null);
-                    }
+                    query = query.Where(q => q.CompletedDate == null);
 
                     tasks = (from r in query
                             select new TaskDto
@@ -155,13 +155,11 @@ namespace App.Web.Repositories
                                 Title = r.Title,
                                 Details = r.Details,
                                 DueDate = r.DueDate,
-                                CompletedDate = r.CompletedDate,
                                 CreatedBy = r.CreatedBy,
                                 CreatedDate = r.CreatedDate,
                                 ModifiedBy = r.ModifiedBy,
                                 ModifiedDate = r.ModifiedDate
-                            }).ToList<TaskDto>(); //Skip(skip).Take(take)
-                  
+                            }).OrderBy(q=>q.DueDate).ToList<TaskDto>(); 
                 }
             }
             catch (Exception ex)

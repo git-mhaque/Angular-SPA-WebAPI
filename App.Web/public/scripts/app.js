@@ -1,9 +1,14 @@
-var app = angular.module('taskManagerApp', ['ngRoute', 'ngResource']).run(function ($rootScope, $http) {
+var app = angular.module('taskManagerApp', ['ngRoute', 'ngResource', 'ui.bootstrap', 'kendo.directives']).run(function ($rootScope, $http) {
 
-    $rootScope.isAuthenticated = false;
+    $rootScope.isAuthenticated = false; 
 	$rootScope.currentUser = '';
 	$rootScope.tokenKey = 'accessToken';
 	sessionStorage.removeItem($rootScope.tokenKey);
+
+	$rootScope.datePickerConfig = {
+	    parseFormats: ["yyyy-MM-ddThh:mm:ss", "dd/MM/yyyy", "yyyy/MM/dd", "yyyy"]
+	};
+
 
 	$rootScope.logout = function () {
     	$rootScope.isAuthenticated = false;

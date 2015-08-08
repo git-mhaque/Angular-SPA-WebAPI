@@ -11,12 +11,12 @@ namespace App.Web.Dtos
         public string Title { get; set; }
         public string Details { get; set; }
         public DateTime? DueDate { get; set; }
-        public DateTime? CompletedDate { get; set; }
         public string CreatedBy { get; set; }
         public DateTime CreatedDate { get; set; }
         public string ModifiedBy { get; set; }
         public DateTime? ModifiedDate { get; set; }
         public bool EditMode { get; set; }
+        public bool IsComplete { get; set; }
     }
 
 }

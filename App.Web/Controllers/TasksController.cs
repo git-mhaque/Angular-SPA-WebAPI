@@ -33,7 +33,7 @@ namespace App.Web.Controllers
             
             try
             {
-                tasks= _taskRepository.GetTasks(true, 0, 100);
+                tasks = _taskRepository.GetOutstandingTasks();
             }
             catch (ApplicationException)
             {

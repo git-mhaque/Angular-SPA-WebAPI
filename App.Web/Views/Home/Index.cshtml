@@ -8,16 +8,24 @@
     <base href="@Url.Content("~")" />
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width" />
-    <title>@ViewBag.Title</title>
+    <title>Task Manager</title>
+
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
     @Scripts.Render("~/bundles/angular")
-    <script src=@Scripts.Url("~/public/scripts/app.js")></script>
-    <script src=@Scripts.Url("~/public/scripts/services/taskService.js")></script>
-    <script src=@Scripts.Url("~/public/scripts/controllers/authController.js")></script>
-    <script src=@Scripts.Url("~/public/scripts/controllers/taskController.js")></script>
+    
+    <link href="~/public/libs/kendo-ui-core/styles/web/kendo.common.core.min.css" rel="stylesheet" />
+    <link href="~/public/libs/kendo-ui-core/styles/web/kendo.default.min.css" rel="stylesheet" />
+    <script src="~/public/libs/kendo-ui-core/js/kendo.ui.core.min.js"></script>
+    <script src="~/public/libs/kendo-ui-core/js/kendo.angular.min.js"></script>
+    <script src="~/public/libs/ui-bootstrap/ui-bootstrap-tpls-0.13.2.min.js"></script>
+
+    <script src="~/public/scripts/app.js"></script>
+    <script src="~/public/scripts/services/taskService.js"></script>
+    <script src="~/public/scripts/controllers/authController.js"></script>
+    <script src="~/public/scripts/controllers/taskController.js"></script>
 </head>
 
 <body ng-app="taskManagerApp">

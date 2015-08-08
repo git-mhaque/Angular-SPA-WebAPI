@@ -1,47 +1,43 @@
 ﻿app.controller('taskController', function (taskService, $scope, $rootScope) {
     $scope.tasks = taskService.query();
-    $scope.newTask = { Title: '', Details: '', DueDate: '', CompletedDate: '' };
+    $scope.newTask = { Title: '', Details: '', DueDate: ''};
 
     $scope.createTask = function () {
-        $scope.newTask.createdBy = $rootScope.currentUser;
-        $scope.newTask.createdDate = Date.now();
+        $scope.newTask.CreatedBy = $rootScope.currentUser;
         taskService.save($scope.newTask, function () {
             $scope.tasks = taskService.query();
-            $scope.newTask = { Title: '', Details: '', DueDate: '', CompletedDate: '' };
+            $scope.newTask = { Title: '', Details: '', DueDate: ''};
         });
     };
 
     $scope.editTask = function (index) {
-        $scope.tasks[index].EditMode = !$scope.tasks[index].EditMode;
-        if ($scope.tasks[index].EditMode == false) {
-            $scope.updateTask(index);
-        }
-
-    };
-
-    $scope.editTaskKeyPress = function (keyEvent, index) {
-        if (keyEvent.which === 13) {
-            $scope.tasks[index].EditMode = false;
-            $scope.updateTask(index);
-        }
+        $scope.tasks[index].EditMode = true;
     };
 
 
     $scope.updateTask = function (index) {
         var task = $scope.tasks[index];
-        console.log("Update task: " + task.Title);
+        console.log("Updating task: " + task.Title);
         taskService.update({ id: task.Id }, task, function () {
-            //$scope.tasks.splice(index, 1);
+            $scope.tasks[index].EditMode = false;
         });
     };
 
-    $scope.removeTask = function (index) {
-        var taskId = $scope.tasks[index].Id;
-        console.log("Remove task: " + taskId);
-        taskService.delete({ id: taskId }, function () {
+    $scope.completeTask = function (index) {
+        var task = $scope.tasks[index];
+        task.IsComplete = true;
+        console.log("Completing task: " + task.Title);
+        taskService.update({ id: task.Id }, task, function () {
+            $scope.tasks = taskService.query();
+        });
+    };
+
+    $scope.deleteTask = function (index) {
+        var task = $scope.tasks[index];
+        console.log("Deleting task: " + task.Title);
+        taskService.delete({ id: task.Id }, function () {
             $scope.tasks.splice(index, 1);
         });
     };
-
 
 });

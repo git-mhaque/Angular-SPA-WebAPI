@@ -9,25 +9,25 @@ namespace App.Web
         public static void RegisterBundles(BundleCollection bundles)
         {
             bundles.Add(new ScriptBundle("~/bundles/jquery").Include(
-                        "~/Scripts/jquery-{version}.js"));
+                        "~/public/libs/jquery/jquery-{version}.js"));
 
             // Use the development version of Modernizr to develop with and learn from. Then, when you're
             // ready for production, use the build tool at http://modernizr.com to pick only the tests you need.
             bundles.Add(new ScriptBundle("~/bundles/modernizr").Include(
-                        "~/Scripts/modernizr-*"));
+                        "~/public/libs/modernizr/modernizr-*"));
 
             bundles.Add(new ScriptBundle("~/bundles/bootstrap").Include(
-                      "~/Scripts/bootstrap.js",
-                      "~/Scripts/respond.js"));
+                      "~/public/libs/bootstrap/js/bootstrap.js",
+                      "~/public/libs/respond/respond.js"));
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
-                      "~/Content/bootstrap.css",
-                      "~/Content/site.css"));
+                      "~/public/libs/bootstrap/styles/bootstrap.css",
+                      "~/public/styles/site.css"));
 
             bundles.Add(new ScriptBundle("~/bundles/angular").Include(
-                        "~/Scripts/angular.js",
-                        "~/Scripts/angular-route.js",
-                        "~/Scripts/angular-resource.js"
+                        "~/public/libs/angular/angular.js",
+                        "~/public/libs/angular/angular-route.js",
+                        "~/public/libs/angular/angular-resource.js"
                         ));
 
 

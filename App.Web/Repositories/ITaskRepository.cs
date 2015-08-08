@@ -13,7 +13,7 @@ namespace App.Web.Repositories
         void SaveTask(TaskDto dto);
         void DeleteTask(int id);
         TaskDto GetTask(int id);
-        IEnumerable<TaskDto> GetTasks(bool outstandingOnly, int skip, int take);
+        IEnumerable<TaskDto> GetOutstandingTasks();
     
     }
 }
