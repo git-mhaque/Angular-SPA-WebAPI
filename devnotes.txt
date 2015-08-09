@@ -1,0 +1,24 @@
+TODO (for submission)
+- Modal Progress indicator for ajax requests 
+- Toast for showing generic errors 
+- Sample task scripts 
+- testing in release mode 
+
+TODO (after submission)
+- Cancel button in edit mode 
+- Date - disabling invalid date
+- login - disabling button after one click 
+- Delete - popup warning 
+- paging the task list 
+- showing login on unauthoriesd requests 
+- splitting task html into smaller partials 
+- fixing the issue of session expiration on browser refresh 
+
+Assumptions 
+- completed tasks are not displayed 
+
+Instructions 
+- WEP API + Angular JS 
+- Download the solution + build 
+- Database local db 
+- manager / password already there + sample task script 

@@ -40,4 +40,8 @@
         });
     };
 
+    $scope.refreshTaskList = function () {
+        $scope.tasks = taskService.query();
+    };
+
 });

@@ -209,6 +209,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="App_Data\aspnet-App.Web-20150802080656.mdf" />
+    <Content Include="public\libs\bootstrap-waitingfor\bootstrap-waitingfor.js" />
     <Content Include="public\libs\bootstrap\styles\bootstrap.css" />
     <Content Include="public\libs\bootstrap\styles\bootstrap.min.css" />
     <Content Include="favicon.ico" />
@@ -271,6 +272,8 @@
     <Content Include="public\libs\kendo-ui-core\styles\web\kendo.common.core.min.css" />
     <Content Include="public\libs\kendo-ui-core\styles\web\kendo.default.min.css" />
     <Content Include="public\libs\kendo-ui-core\styles\web\kendo.silver.min.css" />
+    <Content Include="public\libs\toastr\toastr.css" />
+    <Content Include="public\libs\toastr\toastr.js" />
     <Content Include="public\libs\ui-bootstrap\ui-bootstrap-tpls-0.13.2.min.js" />
     <Content Include="public\scripts\controllers\authController.js" />
     <Content Include="public\scripts\controllers\taskController.js" />
