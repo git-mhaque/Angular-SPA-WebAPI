@@ -35,6 +35,7 @@
 
     $scope.updateTask = function (index) {
         var task = $scope.tasks[index];
+        task.ModifiedBy = $rootScope.currentUser;
         console.log("Updating task: " + task.Title);
         taskService.update({ id: task.Id }, task, function () {
             $scope.tasks[index].EditMode = false;
