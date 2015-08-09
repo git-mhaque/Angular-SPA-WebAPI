@@ -9,12 +9,12 @@
             </div>
             <div class="row">
                 <div class="col-md-12 form-group">
-                    <textarea class="form-control" maxlength="200" rows="2" placeholder="Details" ng-model="newTask.Details" ng-required="true"></textarea>
+                    <textarea class="form-control" maxlength="200" rows="2" placeholder="Details" ng-model="newTask.Details" ></textarea>
                 </div>
             </div>
             <div class="row">
                 <div class="col-md-12 form-group">
-                    <input k-format="'dd/MM/yyyy'" k-options="datePickerConfig" kendo-date-picker placeholder="Due date" ng-model="newTask.DueDate" ng-required="true" />
+                    <input k-format="'dd/MM/yyyy'" k-options="datePickerConfig" kendo-date-picker placeholder="Due date" ng-model="newTask.DueDate" />
                 </div>
             </div>
             <div class="row">
@@ -28,7 +28,7 @@
     <div class="col-md-9">
         <div class="row">
             <div class="col-md-6">
-                <h4>Outstanding Tasks ({{tasks.length}})</h4>
+                <h4>Outstanding Tasks <span ng-hide="showLoadingMessage">({{tasks.length}})</span></h4>
             </div>
             <div class="col-md-6 pull-right">
                 <button class="btn btn-primary btn-sm" ng-click="refreshTaskList()" style="margin-top:5px;">
@@ -37,9 +37,8 @@
             </div>
         </div>
         
-
-        <div class="alert alert-info" ng-show="tasks.length == 0">
-            There is no outstanding task.
+        <div ng-show="showLoadingMessage">
+            {{loadingMessage}}
         </div>
 
         <div ng-repeat="item in tasks track by $index | orderBy:'DueDate': false" class="list-item" ng-class="{'list-item-done': item.isDone}">
@@ -89,12 +88,12 @@
                     </div>
                     <div class="row">
                         <div class="col-md-6 form-group">
-                            <textarea class="form-control" maxlength="200" rows="2" placeholder="Details" ng-model="item.Details" ng-required="true"></textarea>
+                            <textarea class="form-control" maxlength="200" rows="2" placeholder="Details" ng-model="item.Details" ></textarea>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-md-6 form-group">
-                            <input k-format="'dd/MM/yyyy'" k-options="datePickerConfig" kendo-date-picker placeholder="Due date" ng-model="item.DueDate" ng-required="true" />
+                            <input k-format="'dd/MM/yyyy'" k-options="datePickerConfig" kendo-date-picker placeholder="Due date" ng-model="item.DueDate"  />
                         </div>
                     </div>
                     <div class="row">

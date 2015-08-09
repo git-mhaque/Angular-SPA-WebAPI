@@ -209,7 +209,6 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="App_Data\aspnet-App.Web-20150802080656.mdf" />
-    <Content Include="public\libs\bootstrap-waitingfor\bootstrap-waitingfor.js" />
     <Content Include="public\libs\bootstrap\styles\bootstrap.css" />
     <Content Include="public\libs\bootstrap\styles\bootstrap.min.css" />
     <Content Include="favicon.ico" />

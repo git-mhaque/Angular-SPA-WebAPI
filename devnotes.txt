@@ -1,12 +1,10 @@
 TODO (for submission)
-- Modal Progress indicator for ajax requests 
-- Toast for showing generic errors 
 - Sample task scripts 
-- testing in release mode 
 
 TODO (after submission)
-- Cancel button in edit mode 
 - Date - disabling invalid date
+- Firefox date field is highlighted in red if mandatory 
+- Cancel button in edit mode 
 - login - disabling button after one click 
 - Delete - popup warning 
 - paging the task list 
@@ -16,6 +14,7 @@ TODO (after submission)
 
 Assumptions 
 - completed tasks are not displayed 
+- allowed entering task without details and due date, without due date 
 
 Instructions 
 - WEP API + Angular JS 
