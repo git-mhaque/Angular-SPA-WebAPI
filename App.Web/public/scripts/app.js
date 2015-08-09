@@ -22,19 +22,25 @@ app.factory('errorInterceptor', ['$q','$location', function ($q, $rootScope, $lo
     return {
         request: function (config) {
             config.headers.Authorization = 'Bearer ' + sessionStorage.getItem('accessToken'); //TODO 
-            console.log(config);
-            return config || $q.when(config);
+            console.log("Sending request..");
+            //console.log(config);
+            //waitingDialog.show();            return config || $q.when(config);
         },
         requestError: function (request) {
-            console.log(request);
-            return $q.reject(request);
+            console.log("Request error.");
+            //console.log(request);
+            //waitingDialog.hide();            return $q.reject(request);
         },
         response: function (response) {
-            console.log(response);
+            console.log("Received response.");
+            //console.log(response);
+            //waitingDialog.hide();
             return response || $q.when(response);
         },
         responseError: function (response) {
-            console.log(response);
+            console.log("Response error.");
+            //waitingDialog.hide();
+            //console.log(response);
             if (response && response.status === 404) {
             }
             if (response && response.status === 401) {
