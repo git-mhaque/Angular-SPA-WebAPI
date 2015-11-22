@@ -1,8 +1,8 @@
-var app = angular.module('taskManagerApp', ['ngRoute', 'ngResource', 'ui.bootstrap', 'kendo.directives']).run(function ($rootScope, $http) {
+var app = angular.module("taskManagerApp", ["ngRoute", "ngResource", "ui.bootstrap", "kendo.directives"]).run(function ($rootScope, $http) {
 
     $rootScope.isAuthenticated = false;
-	$rootScope.currentUser = '';
-	$rootScope.tokenKey = 'accessToken';
+	$rootScope.currentUser = "";
+	$rootScope.tokenKey = "accessToken";
 	sessionStorage.removeItem($rootScope.tokenKey);
 
 	$rootScope.datePickerConfig = {
@@ -10,23 +10,23 @@ var app = angular.module('taskManagerApp', ['ngRoute', 'ngResource', 'ui.bootstr
 	};
 
 	toastr.options = {
-	    "positionClass": "toast-top-center",
+	    "positionClass": "toast-top-center"
 	};
 
 	$rootScope.logout = function () {
     	$rootScope.isAuthenticated = false;
-    	$rootScope.currentUser = '';
+    	$rootScope.currentUser = "";
     	sessionStorage.removeItem($rootScope.tokenKey);
 	};
 
 });
 
 
-app.factory('errorInterceptor', ['$q','$location', function ($q, $rootScope, $location) {
+app.factory("errorInterceptor", ["$q","$location", function ($q, $rootScope, $location) {
 
     return {
         request: function (config) {
-            config.headers.Authorization = 'Bearer ' + sessionStorage.getItem('accessToken'); //TODO 
+            config.headers.Authorization = "Bearer " + sessionStorage.getItem("accessToken"); //TODO 
             console.log("Sending request.." + config.url);
             //console.log(config);
             return config || $q.when(config);
@@ -62,22 +62,22 @@ app.factory('errorInterceptor', ['$q','$location', function ($q, $rootScope, $lo
 
 
 app.config(['$httpProvider', function ($httpProvider) {
-    $httpProvider.interceptors.push('errorInterceptor');
+    $httpProvider.interceptors.push("errorInterceptor");
 }]);
 
 app.config(function($routeProvider){
 	$routeProvider
-		.when('/', {
-			templateUrl: './public/partials/task.html',
-			controller: 'taskController'
+		.when("/", {
+			templateUrl: "./public/partials/task.html",
+			controller: "taskController"
 		})
-		.when('/login', {
-		    templateUrl: './public/partials/login.html',
-			controller: 'authController'
+		.when("/login", {
+		    templateUrl: "./public/partials/login.html",
+			controller: "authController"
 		})
-		.when('/register', {
-		    templateUrl: './public/partials/register.html',
-			controller: 'authController'
+		.when("/register", {
+		    templateUrl: "./public/partials/register.html",
+			controller: "authController"
 		});
 });
 

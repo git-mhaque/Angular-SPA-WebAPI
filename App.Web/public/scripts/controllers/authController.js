@@ -2,11 +2,11 @@
     $scope.vmLogin = { username: "", password: "" };
     $scope.vmRegister = { UserName: "", Password: "", ConfirmPassword: "", Email: "" };
 
-    $scope.errorMessage = '';
+    $scope.errorMessage = "";
 
     $scope.login = function () {
         var loginData = {
-            grant_type: 'password',
+            grant_type: "password",
             username: $scope.vmLogin.username,
             password: $scope.vmLogin.password
         };
@@ -15,7 +15,7 @@
             return $.param(data);
         }
 
-        $http.post("/Token", loginData, { headers: { 'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8' }, transformRequest: transform })
+        $http.post("/Token", loginData, { headers: { "Content-Type": "application/x-www-form-urlencoded;charset=UTF-8" }, transformRequest: transform })
             .success(function (data) {
                 $scope.errorMessage = "";
                 $rootScope.isAuthenticated = true;
@@ -32,11 +32,11 @@
     $scope.register = function () {
         $scope.vmRegister.ConfirmPassword = $scope.vmRegister.Password;
 
-        $http.post('/api/Account/Register', $scope.vmRegister)
+        $http.post("/api/Account/Register", $scope.vmRegister)
             .success(function (data) {
                 $scope.errorMessage = "";
                 $scope.vmRegister = { UserName: "", Password: "", ConfirmPassword: "", Email: "" };
-                $location.path('/login');
+                $location.path("/login");
             })
             .error(function (data) {
                 $scope.errorMessage = data.ModelState;

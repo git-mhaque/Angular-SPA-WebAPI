@@ -1,6 +1,6 @@
-﻿app.factory('taskService', function ($resource) {
-    return $resource('/api/tasks/:id', null,
+﻿app.factory("taskService", function ($resource) {
+    return $resource("/api/tasks/:id", null,
         {
-            'update': { method: 'PUT' }
+            "update": { method: "PUT" }
         });
 });

@@ -10,7 +10,7 @@
         $scope.loadingMessage = "Loading tasks...";
         taskService.query(function (data) {
             $scope.tasks = data;
-            if ($scope.tasks.length == 0) {
+            if ($scope.tasks.length === 0) {
                 $scope.loadingMessage = "There is no outstanding task.";
             } else {
                 $scope.showLoadingMessage = false;
